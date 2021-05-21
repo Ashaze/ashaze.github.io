@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :root {
+      --w: 200px;
+      --left-w: 50px;
+      --h: 80px;
+    }
+    .hollow {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      /* 
+        [background-position] / [ background-size]
+        top left / 50px 51%
+       */
+      background:
+        radial-gradient(circle at top right, transparent 10px, #ccc 0 ) top left / 50px 51% no-repeat,
+        radial-gradient(circle at bottom right, transparent 10px, #ccc 0 ) bottom left / 50px 51% no-repeat,
+        radial-gradient(circle at top left, transparent 10px, #ccc 0) top right / 150px 51% no-repeat,
+        radial-gradient(circle at bottom left, transparent 10px, #ccc 0) bottom right / 150px 51% no-repeat;
+      /* 阴影 */
+      /* filter: drop-shadow(2px 2px 2px rgba(0,0,0,.2)); */
+    }
+    /* 虚线 */
+    .hollow::before {
+      content: '';
+      position: absolute;
+      left: var(--left-w);
+      height: 100%;
+      border-width: 0 0 0 1px;
+      border-style: dotted;
+      border-color: #fff;
+    }
+    /* 波浪线 */
+    .hollow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      width: 10px;
+      height: 100%;
+      background-image: radial-gradient( 5px circle at 10px 10px, #fff 5px, transparent 0);
+      background-size: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="hollow"></div>
+</body>
+</html>
